@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="占坑 待更新 ddl：1.13">
+  <meta name="description" content="GRASP 相関概念GRASPGeneral responsibility assignment Software patterns：通用职责分配软件模式GRASP模式是面向对象设计（OOD）的一些很好的实践原则，可以提高软件的可维护性、可重用性、理解性。 OODOriented-Object Design defines software objects and how they collabo">
 <meta name="keywords" content="OOAD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GRASP">
 <meta property="og:url" content="http://www.kakuketsu.top/2018/11/26/GRASP/index.html">
 <meta property="og:site_name" content="归去来">
-<meta property="og:description" content="占坑 待更新 ddl：1.13">
+<meta property="og:description" content="GRASP 相関概念GRASPGeneral responsibility assignment Software patterns：通用职责分配软件模式GRASP模式是面向对象设计（OOD）的一些很好的实践原则，可以提高软件的可维护性、可重用性、理解性。 OODOriented-Object Design defines software objects and how they collabo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-05T05:50:13.289Z">
+<meta property="og:updated_time" content="2019-01-12T14:31:39.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GRASP">
-<meta name="twitter:description" content="占坑 待更新 ddl：1.13">
+<meta name="twitter:description" content="GRASP 相関概念GRASPGeneral responsibility assignment Software patterns：通用职责分配软件模式GRASP模式是面向对象设计（OOD）的一些很好的实践原则，可以提高软件的可维护性、可重用性、理解性。 OODOriented-Object Design defines software objects and how they collabo">
 
 
 
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-05 13:50:13" itemprop="dateModified" datetime="2019-01-05T13:50:13+08:00">2019-01-05</time>
+                <time title="修改时间：2019-01-12 22:31:39" itemprop="dateModified" datetime="2019-01-12T22:31:39+08:00">2019-01-12</time>
               
             
           </span>
@@ -462,7 +462,22 @@
       
 
       
-        <p>占坑 待更新 ddl：1.13</p>
+        <h1 id="GRASP-相関概念"><a href="#GRASP-相関概念" class="headerlink" title="GRASP 相関概念"></a>GRASP 相関概念</h1><h2 id="GRASP"><a href="#GRASP" class="headerlink" title="GRASP"></a>GRASP</h2><p>General responsibility assignment Software patterns：通用职责分配软件模式<br>GRASP模式是面向对象设计（OOD）的一些很好的实践原则，可以提高软件的可维护性、可重用性、理解性。</p>
+<h2 id="OOD"><a href="#OOD" class="headerlink" title="OOD"></a>OOD</h2><p>Oriented-Object Design defines software objects and how they collaborate to fulfill the requirements.OOD定义软件对象以及它们之间如何协作以满足需求。<br>确定类的方法，确定对象之间怎么通信。</p>
+<h3 id="input-for-OOD"><a href="#input-for-OOD" class="headerlink" title="input for OOD"></a>input for OOD</h3><p>需求规约、词汇表、用例模型以及其对应的系统顺序图和规约、领域模型</p>
+<h3 id="output-from-OOD"><a href="#output-from-OOD" class="headerlink" title="output from OOD"></a>output from OOD</h3><p>设计模型<br>交互图、类图、包图等等</p>
+<h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>Responsibility-Driven Design (RDD)：如何为对象分配职责<br>职责是关于类目的规约或义务，它可以包括行为、对象创建、数据存储等等。     </p>
+<h3 id="Doing-行为职责"><a href="#Doing-行为职责" class="headerlink" title="Doing 行为职责"></a>Doing 行为职责</h3><ol>
+<li>自己的行为</li>
+<li>在其他对象中初始化</li>
+<li>与其他对象的控制、合作活动有关<h3 id="Knowing-认知职责"><a href="#Knowing-认知职责" class="headerlink" title="Knowing 认知职责"></a>Knowing 认知职责</h3></li>
+<li>知道自己的private封装数据</li>
+<li>知道相关对象</li>
+<li>知道可以计算或导出的d东西</li>
+</ol>
+<p>职责在类和方法中的表现取决于该职责的粒度，有的职责涉及很少的方法，有的确涉及很多。另外，关于认知职责可以从领域模型中推理，毕竟领域模型提供了一些联系。</p>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><p>‘’ In object technology, a pattern is a named description of a problem and solution that can be applied to new contexts . ‘’<br>GRASP模式描述了对象设计和责任分配的基本原则。<br>GRASP模式包括<br> Information Expert 信息专家，<br> Creator 创建者，<br> High Cohesion 高内聚，<br> Low Coupling 低耦合，<br> Controller 控制器，<br> Polymorphism 多态，<br> Indirection 间接，<br> Pure Fabrication 纯虚构，<br> Protected Variations 隔离变化。</p>
+<h1 id="GRASP原则"><a href="#GRASP原则" class="headerlink" title="GRASP原则"></a>GRASP原则</h1><p>之后的细节部分可以看这篇文章，本来自己总结到一半，然后发现这篇写的就很好：<br><a href="https://nicky-zs.github.io/2014/02/09/GRASP/" target="_blank" rel="noopener">《GRASP设计模式及OO设计原则》</a></p>
 
       
     </div>
@@ -581,8 +596,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -698,6 +722,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GRASP-相関概念"><span class="nav-number">1.</span> <span class="nav-text">GRASP 相関概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GRASP"><span class="nav-number">1.1.</span> <span class="nav-text">GRASP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OOD"><span class="nav-number">1.2.</span> <span class="nav-text">OOD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#input-for-OOD"><span class="nav-number">1.2.1.</span> <span class="nav-text">input for OOD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#output-from-OOD"><span class="nav-number">1.2.2.</span> <span class="nav-text">output from OOD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#职责"><span class="nav-number">1.3.</span> <span class="nav-text">职责</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Doing-行为职责"><span class="nav-number">1.3.1.</span> <span class="nav-text">Doing 行为职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowing-认知职责"><span class="nav-number">1.3.2.</span> <span class="nav-text">Knowing 认知职责</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式"><span class="nav-number">1.4.</span> <span class="nav-text">模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GRASP原则"><span class="nav-number">2.</span> <span class="nav-text">GRASP原则</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
