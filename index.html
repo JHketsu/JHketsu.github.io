@@ -348,6 +348,211 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/13/GoF设计模式/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="故此长流">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="归去来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/13/GoF设计模式/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">GoF设计模式</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-13 09:20:39 / 修改时间：19:53:59" itemprop="dateCreated datePublished" datetime="2019-01-13T09:20:39+08:00">2019-01-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-软件工程/" itemprop="url" rel="index"><span itemprop="name">学习笔记-软件工程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h1><p>Pattern is the solution to a recurrent problem, not an concrete solution, but an abstract version of it.<br><strong>four elements</strong>    </p>
+<ol>
+<li>name of the pattern：to describes the pattern, its solutions and consequences in a word or two</li>
+<li>the problem:describes when to apply the pattern</li>
+<li>the solution:describes the elements that make up the design, their relationships, responsibilities, and collaborations</li>
+<li>consequences:the results and trade-offs in applying the pattern</li>
+</ol>
+<h2 id="Organizing-Design-Patterns"><a href="#Organizing-Design-Patterns" class="headerlink" title="Organizing Design Patterns"></a>Organizing Design Patterns</h2><p><strong>by Purpose</strong>    </p>
+<ol>
+<li>Creational Patterns</li>
+<li>Structural Patterns</li>
+<li>Behavioral Patterns </li>
+</ol>
+<p><strong>by Scope</strong>    </p>
+<ol>
+<li>classes</li>
+<li>objects    </li>
+</ol>
+<h1 id="SingleTon-单实例模式"><a href="#SingleTon-单实例模式" class="headerlink" title="SingleTon 单实例模式"></a>SingleTon 单实例模式</h1><p>类的多重性：此类可同时存在对象的数目。<br><strong>实现</strong>    </p>
+<ol>
+<li>构造函数私有化</li>
+<li>将对象作为类的private static member</li>
+<li>添加public static get方法将对象初始化（首次使用时初始化）</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>lazy loading<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    //把实例作为类的private static member</span><br><span class="line">    private static Singleton instance;  </span><br><span class="line">    //构造函数私有化， 这样就不会被实例化</span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;  </span><br><span class="line">    //在首次使用时实例化，之后直接返回该实例</span><br><span class="line">    if (instance == null) &#123;  </span><br><span class="line">        instance = new Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Adapter-适配器模式"><a href="#Adapter-适配器模式" class="headerlink" title="Adapter 适配器模式"></a>Adapter 适配器模式</h1><p>将一个类的接口转换成客户希望的另外一个接口。Adapter模式使原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br>适配器继承或依赖已有的对象，实现想要的目标接口。<br>应用环境：主要解决在软件系统中，常常要将一些”现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p>用已有的火鸡去实现目标（鸭子）接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> public class TurkeyAdapter implements Duck &#123; </span><br><span class="line">        Turkey turkey;</span><br><span class="line">	public TurkeyAdapter (Turkey turkey) &#123;</span><br><span class="line">		this.turkey = turkey;</span><br><span class="line">	&#125;</span><br><span class="line">	public void quack ( ) &#123;</span><br><span class="line">		turkey.gobble ( );</span><br><span class="line">	&#125;</span><br><span class="line">	public void fly ( )&#123;</span><br><span class="line">		for (int j = 0; j&lt;5; j++)</span><br><span class="line">		     turkey.fly ( );</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Facade-外观模式"><a href="#Facade-外观模式" class="headerlink" title="Facade 外观模式"></a>Facade 外观模式</h1><p>外观模式是为一套接口提供一个统一的接口，使得子系统更易于使用。（对应GRASP中的控制器）<br>应用场景：需要使用复杂系统中的一个子集，或以特定的方式与系统互动。<br><strong>Facade与Adapter</strong>    </p>
+<ol>
+<li>外观模式定义新的接口，适配器模式使用旧的接口</li>
+<li>外观模式包装许多对象，适配器模式包装单一对象</li>
+<li>外观模式常使用单实例模式，因为只需要一个外观对象（GRASP中的控制器模式）</li>
+</ol>
+<blockquote>
+<p>电脑的例子：<br>电脑整机是 CPU、内存、硬盘的外观。有了外观以后，启动电脑和关闭电脑都简化了。<br>直接 new 一个电脑。<br>在 new 电脑的同时把 cpu、内存、硬盘都初始化好并且接好线。<br>对外暴露方法（启动电脑，关闭电脑）。<br>启动电脑（按一下电源键）：启动CPU、启动内存、启动硬盘<br>关闭电脑（按一下电源键）：关闭硬盘、关闭内存、关闭CPU</p>
+</blockquote>
+<h1 id="Observer-观察者模式"><a href="#Observer-观察者模式" class="headerlink" title="Observer 观察者模式"></a>Observer 观察者模式</h1><p>观察者模式定义对象之间的一对多依赖关系，当一个对象改变状态时，所有依赖于它的对象都会自动获得通知。<br>观察者模式又叫做发布-订阅（Publish/Subscribe）模式、模型-视图（Model/View）模式、源-监听器（Source/Listener）模式或从属者（Dependents）模式。<br>生活中的例子：彩票、教学、报纸、期刊订阅等。</p>
+<h2 id="推模式与拉模式"><a href="#推模式与拉模式" class="headerlink" title="推模式与拉模式"></a>推模式与拉模式</h2><h3 id="推模式"><a href="#推模式" class="headerlink" title="推模式"></a>推模式</h3><p>推模式是当通知消息来之时，把所有相关信息都通过参数的形式“推给”观察者。（前提是已知观察者需要的信息，于是可以传参）<br><strong>优点</strong>：<br>1.所有信息通过参数传递过来，直接、简单，观察者可以马上进行处理。<br>2.观察者与被观察者没有一点联系，两者几乎没有耦合。<br><strong>缺点</strong>：<br>1.所有信息都强迫推给观察者，不管有用与否。<br>2.如果想添加一个参数，那就需要修改所有观察者的接口函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">/*一个天气预报系统*/</span><br><span class="line"></span><br><span class="line">//被观察者接口定义</span><br><span class="line"> public interface Subject &#123;</span><br><span class="line">     public void registerObserver (Observer o);</span><br><span class="line">     public void removeObserver (Observer o);</span><br><span class="line">     public void notifyObservers ( );</span><br><span class="line">&#125;</span><br><span class="line">//观察者接口定义</span><br><span class="line"> public interface Observer &#123;</span><br><span class="line">      public void update (float temp, float humidity, float pressure);</span><br><span class="line"> &#125;</span><br><span class="line">//观察者的展示部分对应接口</span><br><span class="line">  public interface DisplayElement &#123;</span><br><span class="line">       public void display ( );</span><br><span class="line">  &#125;</span><br><span class="line">//被观察者实体类</span><br><span class="line"> public class WeatherData implements Subject &#123;</span><br><span class="line">    	private ArrayList observers;//观察者list</span><br><span class="line">	private float temperature;</span><br><span class="line">	private float humidity;</span><br><span class="line">	private float pressure;</span><br><span class="line"></span><br><span class="line"> 	public WeatherData ( )&#123;</span><br><span class="line">	      observers = new ArrayList ( );</span><br><span class="line">        &#125;</span><br><span class="line">       public void registerObserver (Observer o) &#123;</span><br><span class="line">	       observers.add(o);</span><br><span class="line">	&#125;</span><br><span class="line"> 	public void removeObserver (Observer o) &#123;</span><br><span class="line">	       int j = observer.indexOf(o);</span><br><span class="line">	       if (j &gt;= 0) &#123;</span><br><span class="line">	          	observers.remove(j);</span><br><span class="line">	       &#125; &#125;</span><br><span class="line">        //notifyObservers 使用推模式，传递相关信息</span><br><span class="line">	public void notifyObservers ( ) &#123;</span><br><span class="line">	       for (int j = 0; j &lt; observers.size(); j++) &#123;</span><br><span class="line">		Observer observer = (Observer)observers.get(j);</span><br><span class="line">		observer.update(temperature, humidity, pressure);</span><br><span class="line">	       &#125;&#125;</span><br><span class="line">	public void measurementsChanged ( ) &#123;</span><br><span class="line">	        notifyObservers ( ); &#125;</span><br><span class="line">	// add a set method for testing + other methods.&#125;</span><br><span class="line"></span><br><span class="line">    //观察者实体类</span><br><span class="line">   public class CurrentConditionsDisplay implements Observer, DisplayElement &#123;</span><br><span class="line">	private float temperatue;</span><br><span class="line">	private float humidity;</span><br><span class="line">	private Subject weatherData;</span><br><span class="line"></span><br><span class="line">  	public CurrentConditionsDisplay (Subject weatherDataS) &#123;</span><br><span class="line">	       this.weatherData = weatherDataS;</span><br><span class="line">	       weatherData.registerObserver (this);</span><br><span class="line">	&#125;</span><br><span class="line">	public void update (float temperature, float humidity, float pressure) &#123;</span><br><span class="line">	       this.temperature = temperature;</span><br><span class="line">	       this.humidity = humidity;</span><br><span class="line">               display ( );</span><br><span class="line">	&#125;</span><br><span class="line">	public void display ( )&#123;</span><br><span class="line">	       System.out.println(“ Current conditions : “ + temperature + “ F degrees  and “ + humidity + “ % humidity” );</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="拉模式"><a href="#拉模式" class="headerlink" title="拉模式"></a>拉模式</h3><p>当通知消息来之时，通知的函数不带任何相关的信息，而是要观察者主动去被观察的对象那里去“拉”信息。（其实是把被观察者本身传过去）<br><strong>优点</strong>：<br>1.可以主动去取自己感兴趣的信息。<br>2.如要添加一个参数，无需修改观察者。<br><strong>缺点</strong>：<br>观察者与被观察者有一定的联系 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//拉模式下传递的是suubject本身</span><br><span class="line">class Subject&#123;</span><br><span class="line">    ......</span><br><span class="line">    public void notifyObservers ( ) &#123;</span><br><span class="line">       for each observer:</span><br><span class="line">	observer.update(this);</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Strategy-策略模式"><a href="#Strategy-策略模式" class="headerlink" title="Strategy 策略模式"></a>Strategy 策略模式</h1><p>策略模式定义了一组算法，并把它们封装起来，它们之间可以互相替换。策略模式让算法得变化独立于使用它的用户。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//定义strategy类接口</span><br><span class="line">public interface Strategy &#123;</span><br><span class="line">   public void doOperation();</span><br><span class="line">&#125;</span><br><span class="line">//定义strategy的不同算法实现</span><br><span class="line">public class Operation1 implements Strategy&#123;</span><br><span class="line">   @Override</span><br><span class="line">   public void doOperation() &#123;</span><br><span class="line">      //do op1</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Operation2 implements Strategy&#123;</span><br><span class="line">   @Override</span><br><span class="line">   public void doOperation() &#123;</span><br><span class="line">      //do op2</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Operation3 implements Strategy&#123;</span><br><span class="line">   @Override</span><br><span class="line">   public void doOperation() &#123;</span><br><span class="line">      //do op3</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建使用算法的context类</span><br><span class="line">public class Context &#123;</span><br><span class="line">   private Strategy strategy;</span><br><span class="line">   public setStrategy(Strategy strategy)&#123;</span><br><span class="line">      this.strategy = strategy;</span><br><span class="line">   &#125;</span><br><span class="line">   public void executeStrategy()&#123;</span><br><span class="line">      return strategy.doOperation();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//不同算法的使用</span><br><span class="line">public class StrategyPatternDemo &#123;</span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">      Context context = new Context(new Operation1());    </span><br><span class="line">      //do something</span><br><span class="line">      Context context = new Context(new Operation2());    </span><br><span class="line">      //do something</span><br><span class="line">      Context context = new Context(new Operation3());    </span><br><span class="line">      //do something</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Factory-工厂模式"><a href="#Factory-工厂模式" class="headerlink" title="Factory 工厂模式"></a>Factory 工厂模式</h1><p>problem:当有特殊考虑时，应当由谁来负责创建对象？<br>solution:创建称为工厂的纯虚构对象来处理这些创建职责。<br>工厂模式允许写一个方法去实例化不同的对象，也可以实例化今后新开发的类。这样做不需要修改该方法的代码。<br>定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public abstract class PizzaStore &#123;</span><br><span class="line">     public Pizza orderPizza (String type) &#123;</span><br><span class="line">           Pizza pizza;</span><br><span class="line">           //从这里调用工厂方法</span><br><span class="line">           pizza =  createPizza (type);</span><br><span class="line"></span><br><span class="line">           pizza.prepare ( );</span><br><span class="line">           pizza.bake ( );</span><br><span class="line">           pizza.cut ( );</span><br><span class="line">           pizza.box ( );</span><br><span class="line"></span><br><span class="line">           return pizza;</span><br><span class="line">     &#125;</span><br><span class="line">     //父类的抽象工厂方法（可以理解为创建对象的接口，但它不是个接口）</span><br><span class="line">     abstract createPizza (String type);</span><br><span class="line">&#125;</span><br><span class="line">public class NYStylePizzaStore &#123;</span><br><span class="line">     </span><br><span class="line">     //子类实现了父类的抽象，创建过程推迟到子类（这里）进行</span><br><span class="line">     public Pizza createPizza (type) &#123;</span><br><span class="line">         if (type.equals(“cheese”))</span><br><span class="line">             pizza = new NYStyleCheesePizza ( );</span><br><span class="line">         else if (type.equals (“pepperoni”))</span><br><span class="line">             pizza = new NYStylePepperoniPizza ( );</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">public class ChicagoStylePizzaStore &#123;</span><br><span class="line"></span><br><span class="line">     //子类实现了父类的抽象，创建过程推迟到子类（这里）进行</span><br><span class="line">     public Pizza createPizza (type) &#123;</span><br><span class="line">         if (type.equals(“cheese”))</span><br><span class="line">             pizza = new ChiStyleCheesePizza ( );</span><br><span class="line">         else if (type.equals (“pepperoni”))</span><br><span class="line">             pizza = new ChiStylePepperoniPizza ( );</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Abstract-Factory-抽象工厂"><a href="#Abstract-Factory-抽象工厂" class="headerlink" title="Abstract Factory 抽象工厂"></a>Abstract Factory 抽象工厂</h1><p>抽象工厂模式（Abstract Factory Pattern）是围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。（抽象之上再抽象？）</p>
+<h1 id="Command-命令模式"><a href="#Command-命令模式" class="headerlink" title="Command 命令模式"></a>Command 命令模式</h1><p>命令模式将一个请求封装成一个对象，从而能以不同的请求来参数化客户对象、把所有请求存入队列或者写入日志，并且支持撤销操作。它允许您将操作的请求者与实际执行操作的对象分离。<br>命令对象（系统中有多个）的所有客户（remote），把每个命令对象看作是一个‘black box’. 当客户需要请求对象的服务时，只要简单地调用对象的虚拟execute() 方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">//定义命令接口</span><br><span class="line"> public interface Command  &#123;</span><br><span class="line">       public void execute ( );</span><br><span class="line"> &#125;</span><br><span class="line">//实现具体命令</span><br><span class="line">public class LightOnCommand implements Command &#123;</span><br><span class="line">      Light light;</span><br><span class="line">      public LightOnCommand (Light light) &#123;</span><br><span class="line">           this.light = light;</span><br><span class="line">       &#125;</span><br><span class="line">       public void execute ( ) &#123;</span><br><span class="line">            light.on ( );</span><br><span class="line">       &#125;</span><br><span class="line"> &#125;</span><br><span class="line">//其中关于灯的内部操作由供应商提供</span><br><span class="line">public class Light &#123;</span><br><span class="line">  public void on () &#123;</span><br><span class="line">    System.out.println (&quot;Light is on &quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  public void off () &#123;</span><br><span class="line">    System.out.println (&quot;Light is off&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//定义invoker，直接调用命令的类</span><br><span class="line">public class SimpleRemoteControl &#123;</span><br><span class="line">       Command slot;</span><br><span class="line">        public SimpleRemoteControl ( ) &#123; &#125;</span><br><span class="line">        public void setCommand (Command command) &#123;</span><br><span class="line">               slot = command;</span><br><span class="line">        &#125;</span><br><span class="line">        public void buttonWasPressed ( ) &#123;</span><br><span class="line">                slot.execute  ( );</span><br><span class="line">        &#125;</span><br><span class="line"> &#125; </span><br><span class="line">//client-&gt;invoker-&gt;command</span><br><span class="line">public class RemoteControlTest &#123;</span><br><span class="line">      public static void main (String [] args) &#123;</span><br><span class="line">          SimpleRemoteControl remote = new SimpleRemoteControl ( );</span><br><span class="line">           Light light = new Light ( );</span><br><span class="line">           LightOnCommand lightOn = new LightOnCommand  (light);</span><br><span class="line">	   </span><br><span class="line">	   remote.setCommand (lightOn);</span><br><span class="line">           remote.buttonWasPressed ( );</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Composition-组合模式"><a href="#Composition-组合模式" class="headerlink" title="Composition 组合模式"></a>Composition 组合模式</h1><p>用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。将对象组合成树形结构以表示”部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。<br>组合模式实际上是树形结构的表示，这里具体的可以参考这篇文章，讲的很清楚：<a href="http://www.runoob.com/w3cnote/java-composite-pattern-2.html" target="_blank" rel="noopener">《Java 设计模式之组合模式及应用场景》</a></p>
+<p>意思是说，一个组合对象，它的子节点可能还是一个组合对象（树枝节点），也可能是单个对象（叶子节点），而树枝节点和叶子节点都是下级节点，我们可以将它们抽象成一类，把它们的方法也抽象成一套，如果具体类有不能实现的方法，可以抛出异常。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><strong>参考网站</strong>：<br><a href="http://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener">http://www.runoob.com/design-pattern/design-pattern-tutorial.html</a><br><strong>参考书</strong>：<br>《UML和模式应用》及课程PPT</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/06/coq期末总结2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1809,7 +2014,7 @@ intros: move hypotheses/variables from goal to context<br>reflexivity: finish th
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
