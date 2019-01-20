@@ -348,6 +348,500 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/20/一日一题：两数之和/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="故此长流">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="归去来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/20/一日一题：两数之和/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">一日一题：两数之和</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-20 14:04:10 / 修改时间：21:06:54" itemprop="dateCreated datePublished" datetime="2019-01-20T14:04:10+08:00">2019-01-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/oj刷题/" itemprop="url" rel="index"><span itemprop="name">oj刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>leetcode-1：两数之和</p>
+<blockquote>
+<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+<blockquote>
+<p>示例：<br>给定 nums = [2, 7, 11, 15], target = 9<br>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
+</blockquote>
+</blockquote>
+<h1 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        //类似算法导论两数之和那道题目</span><br><span class="line">        //首先确定一个元素x</span><br><span class="line">        //再在剩下的元素里找target-x</span><br><span class="line">        //建立一个二维数组存储下标</span><br><span class="line">        vector&lt;int&gt; ans;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        for(int i=0;i&lt;n-1;i++)&#123;</span><br><span class="line">            int x = nums[i];</span><br><span class="line">            int y = target-x;</span><br><span class="line">            for(int j=i+1;j&lt;n;j++)&#123;</span><br><span class="line">                if(y==nums[j])&#123;</span><br><span class="line">                    ans.push_back(i);</span><br><span class="line">                    ans.push_back(j);</span><br><span class="line">                    return ans;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="时间效率分析"><a href="#时间效率分析" class="headerlink" title="时间效率分析"></a>时间效率分析</h2><p>O(n^2)<br>如果使用二分法，那么是O(n*logn)</p>
+<h1 id="别人的代码"><a href="#别人的代码" class="headerlink" title="别人的代码"></a>别人的代码</h1><p>我的代码用时72MS<br>最快的代码用时4MS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	// Time : O(n)</span><br><span class="line">	// Space : O(n)</span><br><span class="line">	vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)</span><br><span class="line">	&#123;</span><br><span class="line">		vector&lt;int&gt; v(2, 0);</span><br><span class="line">		unordered_map&lt;int, int&gt; hash;</span><br><span class="line">		//  从数组最后一个元素开始遍历</span><br><span class="line">		//  进入循环前先 --i</span><br><span class="line">		//  hash存储的是value对应的index  value ~ index</span><br><span class="line">		for (int i = nums.size(); i--; hash[nums[i]] = i)</span><br><span class="line">		&#123;</span><br><span class="line">			//  find查询key是否存在，存在返回其对应迭代器</span><br><span class="line">			if (hash.find(target - nums[i]) == hash.end())</span><br><span class="line">			&#123;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				v[0] = i;</span><br><span class="line">				v[1] = hash[target - nums[i]];</span><br><span class="line">				return v;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>首先用一个具有两个元素每个元素的初始值为0的vector。<br>再用哈希表来存储已经访问过的元素，元素值作为key，其索引作为value。（这和我们需要比较数字大小这点有关）。<br>对输入的数组只做一次遍历，从后向前，访问过的元素都加入哈希表中，每次检查最新访问的元素是否和哈希表中存在的元素构成满足题意的两数之和。<br>仔细看循环条件，发现这种循环的方式也没有用过，for第二个项使用i–，实际上是if(i–),能在i=0时自动退出循环，减少了代码量。</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h3><p>C++11中，哈希表对应的容器是unordered_map，适用于需要高效率查询的情况。具体可查阅<a href="http://www.cplusplus.com/reference/unordered_map/unordered_map/" target="_blank" rel="noopener">文档</a>。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/20/一日一题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="故此长流">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="归去来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/20/一日一题/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">一日一题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-20 14:03:33 / 修改时间：14:10:56" itemprop="dateCreated datePublished" datetime="2019-01-20T14:03:33+08:00">2019-01-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/oj刷题/" itemprop="url" rel="index"><span itemprop="name">oj刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>每日一刷leetcode</p>
+<p>之前的计划原本是一日三题</p>
+<p>看了leetcode在通过最后给出了执行时间分布表</p>
+<p>觉得仅仅一道题目自己也有许多需要学习的部分</p>
+<p>所以现在计划是每日至少一题~</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/15/动态规划/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="故此长流">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="归去来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/15/动态规划/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">动态规划</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-15 18:16:05 / 修改时间：18:16:51" itemprop="dateCreated datePublished" datetime="2019-01-15T18:16:05+08:00">2019-01-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-算法/" itemprop="url" rel="index"><span itemprop="name">学习笔记-算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/13/GoF设计模式/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1600,378 +2094,13 @@ intros: move hypotheses/variables from goal to context<br>reflexivity: finish th
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2018/11/26/软件工程专业英语（一）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="故此长流">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myicon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="归去来">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/26/软件工程专业英语（一）/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">软件工程专业英语（一）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-26 20:48:45" itemprop="dateCreated datePublished" datetime="2018-11-26T20:48:45+08:00">2018-11-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-05 13:34:17" itemprop="dateModified" datetime="2019-01-05T13:34:17+08:00">2019-01-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-英语/" itemprop="url" rel="index"><span itemprop="name">学习笔记-英语</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="做一次复习时涉及到的英文整理，备忘，来自《UML和模式应用》。"><a href="#做一次复习时涉及到的英文整理，备忘，来自《UML和模式应用》。" class="headerlink" title="做一次复习时涉及到的英文整理，备忘，来自《UML和模式应用》。"></a>做一次复习时涉及到的英文整理，备忘，来自《UML和模式应用》。</h3><p>indispensable 必不可少<br>iterative 迭代<br>transaction 交易<br>has goals fulfilled 实现目标<br>offstage 幕后<br>text documents 文本文档<br>contract 合同，规约<br>functional specification 功能规范<br>supplementary specification 补充规格<br>glossary 词汇表    </p>
-<p>vision 前景<br>terse one-paragraph summary 简单的一段式摘要<br>inception 初始阶段<br>identify scope and risks 确定范围和风险<br>variation 变量，变化<br>supporting sections 支持部分（存疑）<br>success guarantees 成功保证<br>extract concepts 提取概念<br>elaboration 细化阶段    </p>
-<p>10% of critical use cases 百分之十的关键用例<br>template 模板<br>actual use case 实际用例<br>stakeholder 利益相关人<br>it’s roughly corresponds to… 它大致对应于……<br>Elementary Business Process 基本业务流程<br>authorization 授权<br>negotiate a supplier contract 协商供应商合同<br>in an essential style 以必要的方式<br>keep the user interface 保持用户界面    </p>
-<p>focus on actor intent 关注参与者意图<br>subtle 微妙<br>typical situation 典型情况<br>sponsors 赞助商<br>upon dilivery 在交付时<br>implement 实现<br>kennel 狗窝<br>anchor 固定<br>vague 模糊的<br>imprecise vocabulary 不精确的词汇    </p>
-<p>SRS 系统需求规约<br>unambiguous 明确的<br>traceable 可追溯的<br>cost-effective 合算的<br>minor changed 轻微改变了<br>the formal specifications area 正式规范领域<br>operation contract 操作契约<br>rigorous proof theory 严谨的证明理论<br>formal specification 形式化规范说明<br>DBC Design by Contract    </p>
-<p>fine-grained software class 细粒度软件类<br>mutual obligations 相互的义务<br>respect 遵循<br>routine 例程<br>contract violation 违背契约<br>regardless of 不论<br>bind 约束，绑定<br>client 客户<br>supplier 供应商<br>propeties 属性    </p>
-<p>stable 稳定的<br>mutable 易变的<br>teminate 终止<br>inheritance 继承<br>redeclaration 重新声明<br>overriding 重写<br>preserve 保留<br>honour 遵守<br>non-trivial 非常重要的<br>defer 推迟    </p>
-<p>collaborate 协作<br>RDD Resposibility-Driven Design<br>categories 类别<br>coordinate 协调<br>derive 导出<br>granularity 粒度<br>inferable 能推理的<br>a repertoire of both general principles and idiomatic solutions 一系列通用原则和惯用解决方法<br>idiom 习语<br>codify 编纂    </p>
-<p>methodical 有条不紊的<br>rational 理性的<br>explainable 可解释的<br>invoke 调用<br>coupling 耦合<br>cohension 内聚<br>analogy 类比<br>as a rule of thumb 根据经验<br>bloat 臃肿的<br>forward messages 转发消息    </p>
-<p>pervasive 无处不在的<br>inherently 本质上<br>generic 通用的<br>gauge 评估<br>notation 表示法<br>illustrate 说明<br>contract 对比<br>pure fabrication 纯虚构<br>delegation 委派<br>SUD System under development    </p>
-<p>moderate degree 中等程度<br>underlying goal 基本目标</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2018/11/26/GRASP/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="故此长流">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myicon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="归去来">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/26/GRASP/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">GRASP</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-26 15:10:40" itemprop="dateCreated datePublished" datetime="2018-11-26T15:10:40+08:00">2018-11-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-12 22:31:39" itemprop="dateModified" datetime="2019-01-12T22:31:39+08:00">2019-01-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-软件工程/" itemprop="url" rel="index"><span itemprop="name">学习笔记-软件工程</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="GRASP-相関概念"><a href="#GRASP-相関概念" class="headerlink" title="GRASP 相関概念"></a>GRASP 相関概念</h1><h2 id="GRASP"><a href="#GRASP" class="headerlink" title="GRASP"></a>GRASP</h2><p>General responsibility assignment Software patterns：通用职责分配软件模式<br>GRASP模式是面向对象设计（OOD）的一些很好的实践原则，可以提高软件的可维护性、可重用性、理解性。</p>
-<h2 id="OOD"><a href="#OOD" class="headerlink" title="OOD"></a>OOD</h2><p>Oriented-Object Design defines software objects and how they collaborate to fulfill the requirements.OOD定义软件对象以及它们之间如何协作以满足需求。<br>确定类的方法，确定对象之间怎么通信。</p>
-<h3 id="input-for-OOD"><a href="#input-for-OOD" class="headerlink" title="input for OOD"></a>input for OOD</h3><p>需求规约、词汇表、用例模型以及其对应的系统顺序图和规约、领域模型</p>
-<h3 id="output-from-OOD"><a href="#output-from-OOD" class="headerlink" title="output from OOD"></a>output from OOD</h3><p>设计模型<br>交互图、类图、包图等等</p>
-<h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>Responsibility-Driven Design (RDD)：如何为对象分配职责<br>职责是关于类目的规约或义务，它可以包括行为、对象创建、数据存储等等。     </p>
-<h3 id="Doing-行为职责"><a href="#Doing-行为职责" class="headerlink" title="Doing 行为职责"></a>Doing 行为职责</h3><ol>
-<li>自己的行为</li>
-<li>在其他对象中初始化</li>
-<li>与其他对象的控制、合作活动有关<h3 id="Knowing-认知职责"><a href="#Knowing-认知职责" class="headerlink" title="Knowing 认知职责"></a>Knowing 认知职责</h3></li>
-<li>知道自己的private封装数据</li>
-<li>知道相关对象</li>
-<li>知道可以计算或导出的d东西</li>
-</ol>
-<p>职责在类和方法中的表现取决于该职责的粒度，有的职责涉及很少的方法，有的确涉及很多。另外，关于认知职责可以从领域模型中推理，毕竟领域模型提供了一些联系。</p>
-<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><p>‘’ In object technology, a pattern is a named description of a problem and solution that can be applied to new contexts . ‘’<br>GRASP模式描述了对象设计和责任分配的基本原则。<br>GRASP模式包括<br> Information Expert 信息专家，<br> Creator 创建者，<br> High Cohesion 高内聚，<br> Low Coupling 低耦合，<br> Controller 控制器，<br> Polymorphism 多态，<br> Indirection 间接，<br> Pure Fabrication 纯虚构，<br> Protected Variations 隔离变化。</p>
-<h1 id="GRASP原则"><a href="#GRASP原则" class="headerlink" title="GRASP原则"></a>GRASP原则</h1><p>之后的细节部分可以看这篇文章，本来自己总结到一半，然后发现这篇写的就很好：<br><a href="https://nicky-zs.github.io/2014/02/09/GRASP/" target="_blank" rel="noopener">《GRASP设计模式及OO设计原则》</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2014,7 +2143,7 @@ intros: move hypotheses/variables from goal to context<br>reflexivity: finish th
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2027,7 +2156,7 @@ intros: move hypotheses/variables from goal to context<br>reflexivity: finish th
     
 	  <a href="/categories/index.html">
 	
-      <span class="site-state-item-count">5</span>
+      <span class="site-state-item-count">7</span>
       <span class="site-state-item-name">分类</span>
     </a>
   </div>
@@ -2040,7 +2169,7 @@ intros: move hypotheses/variables from goal to context<br>reflexivity: finish th
     
 	  <a href="/tags/index.html">
 	
-      <span class="site-state-item-count">5</span>
+      <span class="site-state-item-count">6</span>
       <span class="site-state-item-name">标签</span>
     </a>
   </div>
