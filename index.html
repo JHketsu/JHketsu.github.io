@@ -348,6 +348,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/21/一日一题：两数相加/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="故此长流">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="归去来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/21/一日一题：两数相加/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">一日一题：两数相加</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-21 13:54:58 / 修改时间：14:59:03" itemprop="dateCreated datePublished" datetime="2019-01-21T13:54:58+08:00">2019-01-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/oj刷题/" itemprop="url" rel="index"><span itemprop="name">oj刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+<p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。<br>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。<br>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。<br>示例：</p>
+<blockquote>
+<p>输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>输出：7 -&gt; 0 -&gt; 8<br>原因：342 + 465 = 807    </p>
+</blockquote>
+</blockquote>
+<h1 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">list r;//存储相加结果，有一个指向它的head</span><br><span class="line">int jinwei = 0;//保存进位情况</span><br><span class="line">while(l1!=null&amp;&amp;l2!=null)&#123;</span><br><span class="line">    r.value = (l1.value+l2.value+jinwei)%10;</span><br><span class="line">    jinwei = (l1.value+l2.value+jinwei)/10;</span><br><span class="line">    l1 = l1.next;</span><br><span class="line">    l2 = l2.next;</span><br><span class="line">    r = r.next;</span><br><span class="line">&#125;</span><br><span class="line">while(l1!=null)&#123;</span><br><span class="line">    r.value = (l1.value+jinwei)%10;</span><br><span class="line">    jinwei = (l1.value+jinwei)/10;</span><br><span class="line">    l1 = l1.next;</span><br><span class="line">    r = r.next;</span><br><span class="line">&#125;</span><br><span class="line">while(l2!=null)&#123;</span><br><span class="line">    r.value = (l2.value+jinwei)%10;</span><br><span class="line">    jinwei = (l2.value+jinwei)/10;</span><br><span class="line">    l2 = l2.next;</span><br><span class="line">    r = r.next;</span><br><span class="line">&#125;</span><br><span class="line">return head;</span><br></pre></td></tr></table></figure>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>数据结构方面并不是非常清楚，所以编译起来会有各种各样的语法错误。试过c++和java，都做的不是很好，基础语法有待加强。要学会new!</p>
+<h1 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h1><p>官方给出的是java的示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">    ListNode dummyHead = new ListNode(0);</span><br><span class="line">    ListNode p = l1, q = l2, curr = dummyHead;</span><br><span class="line">    int carry = 0;</span><br><span class="line">    while (p != null || q != null) &#123;</span><br><span class="line">        int x = (p != null) ? p.val : 0;</span><br><span class="line">        int y = (q != null) ? q.val : 0;</span><br><span class="line">        int sum = carry + x + y;</span><br><span class="line">        carry = sum / 10;</span><br><span class="line">        curr.next = new ListNode(sum % 10);</span><br><span class="line">        curr = curr.next;</span><br><span class="line">        if (p != null) p = p.next;</span><br><span class="line">        if (q != null) q = q.next;</span><br><span class="line">    &#125;</span><br><span class="line">    if (carry &gt; 0) &#123;</span><br><span class="line">        curr.next = new ListNode(carry);</span><br><span class="line">    &#125;</span><br><span class="line">    return dummyHead.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>阅读官方题解后发现，我的问题在于没有new一个新节点，也没有head,p,q这一类ListNode作为遍历指针。并且在最后没有检查进位值是否大于0。<br>参照实现我的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        ListNode head = new ListNode(0);</span><br><span class="line">        ListNode curr = head;</span><br><span class="line">        int value = 0;</span><br><span class="line">        int jinwei = 0;</span><br><span class="line">        while(l1!=null&amp;&amp;l2!=null)&#123;</span><br><span class="line">            value = (l1.val+l2.val+jinwei)%10;</span><br><span class="line">            jinwei = (l1.val+l2.val+jinwei)/10;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">            curr.next = new ListNode(value);</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l1!=null)&#123;</span><br><span class="line">            value = (l1.val+jinwei)%10;</span><br><span class="line">            jinwei = (l1.val+jinwei)/10;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">            curr.next = new ListNode(value);</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l2!=null)&#123;</span><br><span class="line">            value = (l2.val+jinwei)%10;</span><br><span class="line">            jinwei = (l2.val+jinwei)/10;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">            curr.next = new ListNode(value);</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(jinwei&gt;0)</span><br><span class="line">            curr.next = new ListNode(jinwei);</span><br><span class="line">        </span><br><span class="line">        return head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="链表的遍历与插入"><a href="#链表的遍历与插入" class="headerlink" title="链表的遍历与插入"></a>链表的遍历与插入</h2><p><em>java</em>    </p>
+<p>从官方给出的代码中可以看出，想给链表插入一个新node，并且最后返回整个链表。首先需要一个链表头，我们再返回时返回的是它的下一个node。用currentNode遍历链表找到你想要的位置，进行对应操作。<br>java的好处在于不需要折腾指针，*&amp;有段时间不写了我就分不清orz    </p>
+<p><em>c++</em><br>这里还是想给一下c++的做法，在c++中如何遍历链表以及插入一个新的node？<br>遍历的方式和java类似，要注意最后返回的是指针，插入新的node需要malloc出一个新的Node的空间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line"></span><br><span class="line">        ListNode *p1 = l1;</span><br><span class="line">        ListNode *p2 = l2;</span><br><span class="line">        ListNode head = ListNode(0);</span><br><span class="line">        ListNode *curr = &amp;head;</span><br><span class="line">        int jinwei = 0;</span><br><span class="line">        while(p1!=NULL||p2!=NULL)&#123;</span><br><span class="line">            curr-&gt;next = (ListNode *)malloc(sizeof(ListNode));</span><br><span class="line">            int x = (p1!=NULL)?(p1-&gt;val):0;</span><br><span class="line">            int y = (p2!=NULL)?(p2-&gt;val):0;</span><br><span class="line">            int sum = x+y+jinwei;</span><br><span class="line">            jinwei = sum/10;</span><br><span class="line">            curr = curr-&gt;next;</span><br><span class="line">            curr-&gt;val = sum%10;</span><br><span class="line">            if(p1!=NULL) p1 = p1-&gt;next;</span><br><span class="line">            if(p2!=NULL) p2 = p2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(jinwei&gt;0)&#123;</span><br><span class="line">            curr-&gt;next = (ListNode *)malloc(sizeof(ListNode));</span><br><span class="line">            curr = curr-&gt;next;</span><br><span class="line">            curr-&gt;val = jinwei;</span><br><span class="line">        &#125;</span><br><span class="line">        curr-&gt;next = NULL;</span><br><span class="line">        return head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这里要注意在最后给curr-&gt;next置为NULL，否则会RE。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/20/一日一题：两数之和/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1912,188 +2085,6 @@ intros: move hypotheses/variables from goal to context<br>reflexivity: finish th
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2018/11/30/数据库/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="故此长流">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/myicon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="归去来">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/30/数据库/" class="post-title-link" itemprop="http://www.kakuketsu.top/index.html">数据库</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-30 09:16:11" itemprop="dateCreated datePublished" datetime="2018-11-30T09:16:11+08:00">2018-11-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-05 13:36:28" itemprop="dateModified" datetime="2019-01-05T13:36:28+08:00">2019-01-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-PHP/" itemprop="url" rel="index"><span itemprop="name">学习笔记-PHP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>占坑</p>
-<h1 id="使用PHP访问数据库"><a href="#使用PHP访问数据库" class="headerlink" title="使用PHP访问数据库"></a>使用PHP访问数据库</h1><p>1</p>
-<h1 id="关系型数据库和SQL"><a href="#关系型数据库和SQL" class="headerlink" title="关系型数据库和SQL"></a>关系型数据库和SQL</h1><p>1</p>
-<h2 id="PHP数据对象"><a href="#PHP数据对象" class="headerlink" title="PHP数据对象"></a>PHP数据对象</h2><pre><code>1
-</code></pre><h1 id="MySQLi对象接口"><a href="#MySQLi对象接口" class="headerlink" title="MySQLi对象接口"></a>MySQLi对象接口</h1><p>1</p>
-<h2 id="检测数据显示"><a href="#检测数据显示" class="headerlink" title="检测数据显示"></a>检测数据显示</h2><pre><code>1
-</code></pre><h1 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h1><p>1</p>
-<h1 id="直接文件级别操作"><a href="#直接文件级别操作" class="headerlink" title="直接文件级别操作"></a>直接文件级别操作</h1><p>1</p>
-<h1 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h1><p>1</p>
-<h2 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h2><pre><code>1
-</code></pre><h2 id="插入更复杂的数据"><a href="#插入更复杂的数据" class="headerlink" title="插入更复杂的数据"></a>插入更复杂的数据</h2><pre><code>1
-</code></pre>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2143,7 +2134,7 @@ intros: move hypotheses/variables from goal to context<br>reflexivity: finish th
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
