@@ -348,6 +348,216 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2019/01/05/coq期末总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="故此长流">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="归去来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/05/coq期末总结/" class="post-title-link" itemprop="http://www.kakuketsu.top/page/2/index.html">coq期末总结（一）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-05 13:32:29 / 修改时间：21:14:08" itemprop="dateCreated datePublished" datetime="2019-01-05T13:32:29+08:00">2019-01-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-函数式编程/" itemprop="url" rel="index"><span itemprop="name">学习笔记-函数式编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学了一学期coq了，前半个学期还跟着进度自己敲代码，后半个学期真的是心有余力不足。于是在这里开始愉快复习啦，希望能理清脉络，不要白上课了，吼吼~</p>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="课本教材"><a href="#课本教材" class="headerlink" title="课本教材"></a>课本教材</h2><p>《SOTFWARE FOUNDATIONS》 的卷一<br><a href="https://softwarefoundations.cis.upenn.edu/current/lf-current/toc.html" target="_blank" rel="noopener">《LOGICAL FOUNDATIONS》</a><br>学习内容是从Basics到Imp，以下总结不按章节来，<del>毕竟主要根据考试重点总结</del></p>
+<h2 id="什么是函数式编程"><a href="#什么是函数式编程" class="headerlink" title="什么是函数式编程"></a>什么是函数式编程</h2><blockquote>
+<p>函数式编程是种编程方式，它将电脑运算视为函数的计算。函数编程语言最重要的基础是λ演算（lambda calculus），而且λ演算的函数可以接受函数当作输入（参数）和输出（返回值）。    </p>
+</blockquote>
+<p>以上引用自百度百科，看完才想起来，唔，在接触coq之前，还学了λ演算。<br>其实就是把函数名写在左边，把函数需要的参数写在右边，没有括号，可以做成复合函数的样子。看几段coq代码就能理解。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Fixpoint evenb (n:nat) : bool :=</span><br><span class="line">  match n with</span><br><span class="line">  | O ⇒ true</span><br><span class="line">  | S O ⇒ false</span><br><span class="line">  | S (S n&apos;) ⇒ evenb n&apos;</span><br><span class="line">  end.</span><br></pre></td></tr></table></figure></p>
+<p>比如上面这段代码，使用递归的方式求n是否为一个偶数，其中<em>S (S n’) ⇒ evenb n’</em> 就代表要判断n’+2是不是偶数那么判断n’是不是偶数就好了，于是把函数evenb作用于n’上。函数式方程的写法大概就是这样。    </p>
+<h2 id="一基二函一定理"><a href="#一基二函一定理" class="headerlink" title="一基二函一定理"></a>一基二函一定理</h2><p>在coq中主要需要应对4种式子，弄清楚了它们的语法和含义，也就清楚了基本的coq编程。以下以Basics一章的部分代码为例讲解这4种式子。</p>
+<h3 id="Inductive"><a href="#Inductive" class="headerlink" title="Inductive"></a>Inductive</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Inductive day : Type :=</span><br><span class="line">  | monday : day</span><br><span class="line">  | tuesday : day</span><br><span class="line">  | wednesday : day</span><br><span class="line">  | thursday : day</span><br><span class="line">  | friday : day</span><br><span class="line">  | saturday : day</span><br><span class="line">  | sunday : day.</span><br></pre></td></tr></table></figure>
+<p>inductive 意为：归纳的。<br>从上面的代码中还没有归纳的部分，我们可以看到inductive可以用来定义类型，这里定义了day类型，可以看出它是一个枚举类型，由简单的构造子组成。    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Inductive rgb : Type :=</span><br><span class="line">  | red : rgb</span><br><span class="line">  | green : rgb</span><br><span class="line">  | blue : rgb.</span><br><span class="line">Inductive color : Type :=</span><br><span class="line">  | black : color</span><br><span class="line">  | white : color</span><br><span class="line">  | primary : rgb → color.</span><br></pre></td></tr></table></figure>
+<p>而这里就出现了含参构造子：<em>primary : rgb → color.</em><br>同样的还有自然类型的定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inductive nat : Type :=</span><br><span class="line">  | O : nat</span><br><span class="line">  | S : nat → nat.</span><br></pre></td></tr></table></figure></p>
+<p>这里字母O代表数字0，S O 代表数字1，S (S O) 代表数字2，……以此类推<br>虽然在这里的O看起来很圆很大，但是在coq里它非常瘦，可能会真的认为那是0。<br>说道自然数，我一直不明白为什么在左边加个S就能让它递增了，但是今天发现书里有这样一句话之前被我忽略了<del>因为真的不想看那么多英文</del>：</p>
+<blockquote>
+<p>Because natural numbers are such a pervasive form of data, Coq provides a tiny bit of built-in magic for parsing and printing them: ordinary arabic numerals can be used as an alternative to the “unary” notation defined by the constructors S and O.</p>
+</blockquote>
+<p>所以放心用就好了。</p>
+<ul>
+<li>小结</li>
+</ul>
+<ol>
+<li>定义枚举类型</li>
+<li>定义自然数    </li>
+</ol>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Definition minustwo (n : nat) : nat :=</span><br><span class="line">  match n with</span><br><span class="line">    | O ⇒ O</span><br><span class="line">    | S O ⇒ O</span><br><span class="line">    | S (S n&apos;) ⇒ n&apos;</span><br><span class="line">  end.</span><br></pre></td></tr></table></figure>
+<p>简单不解释，还可以运用之前定义过的函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Definition oddb (n:nat) : bool := negb (evenb n).</span><br></pre></td></tr></table></figure></p>
+<p>用Example,Check等检查你的函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Compute (minustwo 4).</span><br><span class="line">  (* ===&gt; 2 : nat *)</span><br><span class="line"></span><br><span class="line">Example test_oddb1: oddb 1 = true.</span><br><span class="line">Proof. simpl. reflexivity. Qed.</span><br><span class="line">Example test_oddb2: oddb 4 = false.</span><br><span class="line">Proof. simpl. reflexivity. Qed.</span><br></pre></td></tr></table></figure></p>
+<h3 id="Fixpoint"><a href="#Fixpoint" class="headerlink" title="Fixpoint"></a>Fixpoint</h3><p>fixpoint意为“不动点”，刚开始我一直搞不懂这玩意怎么用，用多了发现规律了，其实就是一个递归函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Fixpoint evenb (n:nat) : bool :=</span><br><span class="line">  match n with</span><br><span class="line">  | O ⇒ true</span><br><span class="line">  | S O ⇒ false</span><br><span class="line">  | S (S n&apos;) ⇒ evenb n&apos;</span><br><span class="line">  end.</span><br></pre></td></tr></table></figure></p>
+<p>当n&gt;2时就有<em>evenb</em>的层层递归。    </p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>有了一些函数，我们就可以获得一些等价关系，不管参数是什么，这些关系都成立。有人会觉得，这些不是显而易见成立吗，但要明白，我们处于万物初始的状态，一切都靠自己定义，coq内置能给的只有一小部分。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Theorem plus_id_example : forall n m:nat,</span><br><span class="line">  n = m -&gt;</span><br><span class="line">  n + n = m + m.</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，你给出了定理，也要给出证明才行。这些被证明的定理，可以被后面的证明所使用。一步一步，我们将构建整个世界。（不要再中二了喂(#`O′)    </p>
+<h3 id="inductive-高阶玩法"><a href="#inductive-高阶玩法" class="headerlink" title="inductive 高阶玩法"></a>inductive 高阶玩法</h3><p>这里要引入Imp一章的内容，令人印象深刻的一章啊，从这里彻底搞不懂inductive了。<br>先上一段代码，真是相当惊人了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Inductive aevalR : aexp → nat → Prop :=</span><br><span class="line">  | E_ANum : ∀ (n: nat),</span><br><span class="line">      aevalR (ANum n) n</span><br><span class="line">  | E_APlus : ∀ (e1 e2: aexp) (n1 n2: nat),</span><br><span class="line">      aevalR e1 n1 →</span><br><span class="line">      aevalR e2 n2 →</span><br><span class="line">      aevalR (APlus e1 e2) (n1 + n2)</span><br><span class="line">  | E_AMinus: ∀ (e1 e2: aexp) (n1 n2: nat),</span><br><span class="line">      aevalR e1 n1 →</span><br><span class="line">      aevalR e2 n2 →</span><br><span class="line">      aevalR (AMinus e1 e2) (n1 - n2)</span><br><span class="line">  | E_AMult : ∀ (e1 e2: aexp) (n1 n2: nat),</span><br><span class="line">      aevalR e1 n1 →</span><br><span class="line">      aevalR e2 n2 →</span><br><span class="line">      aevalR (AMult e1 e2) (n1 * n2).</span><br></pre></td></tr></table></figure></p>
+<p>这里定义一个了不知道怎么称呼的仁兄，我们叫它aevalR，给它一个aexp参数，一个nat参数，它会给你一个Prop参数。不知道有没有人看懂，<del>反正分析到这里我突然看懂了，只可意会不可言传啊</del>。总结：学好λ，走遍天下都不怕。    </p>
+<h2 id="Proof方法"><a href="#Proof方法" class="headerlink" title="Proof方法"></a>Proof方法</h2><p>依旧用代码说话，每种证明方法基本都会涉及：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  (* move both quantifiers into the context: *)</span><br><span class="line">  intros n m.</span><br><span class="line">  (* move the hypothesis into the context: *)</span><br><span class="line">  intros H.</span><br><span class="line">  (* rewrite the goal using the hypothesis: *)</span><br><span class="line">  rewrite → H.</span><br><span class="line">  reflexivity. Qed.</span><br></pre></td></tr></table></figure></p>
+<p>证明的时候要注意结构,以下两种结构也可以混在一起用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros b c. destruct b.</span><br><span class="line">  - destruct c.</span><br><span class="line">    + reflexivity.</span><br><span class="line">    + reflexivity.</span><br><span class="line">  - destruct c.</span><br><span class="line">    + reflexivity.</span><br><span class="line">    + reflexivity.</span><br><span class="line">Qed.</span><br><span class="line"></span><br><span class="line">Proof.</span><br><span class="line">  intros b c. destruct b.</span><br><span class="line">  &#123; destruct c.</span><br><span class="line">    &#123; reflexivity. &#125;</span><br><span class="line">    &#123; reflexivity. &#125; &#125;</span><br><span class="line">  &#123; destruct c.</span><br><span class="line">    &#123; reflexivity. &#125;</span><br><span class="line">    &#123; reflexivity. &#125; &#125;</span><br><span class="line">Qed.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros n. induction n as [| n&apos; IHn&apos;].</span><br><span class="line">  - (* n = 0 *) reflexivity.</span><br><span class="line">  - (* n = S n&apos; *) simpl. rewrite &lt;- IHn&apos;. reflexivity. Qed.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros n m p q.</span><br><span class="line">  assert (H: n + m = m + n).</span><br><span class="line">  &#123; rewrite → plus_comm. reflexivity. &#125;</span><br><span class="line">  rewrite → H. reflexivity. Qed.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros l1 l2 l3. induction l1 as [| n l1&apos; IHl1&apos;].</span><br><span class="line">  - (* l1 = nil *)</span><br><span class="line">    reflexivity.</span><br><span class="line">  - (* l1 = cons n l1&apos; *)</span><br><span class="line">    simpl. rewrite → IHl1&apos;. reflexivity. Qed.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros n m o p eq1 eq2.</span><br><span class="line">  apply eq2. apply eq1. Qed.</span><br></pre></td></tr></table></figure>
+<p>提供中间变量 <em>[a;b] = [c;d] →[c;d] = [e;f] →[a;b] = [e;f]</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply trans_eq with (m:=[c;d]).</span><br></pre></td></tr></table></figure></p>
+<p>inversion和inductive的定义有关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Theorem inversion_ex1 : ∀ (n m o : nat),</span><br><span class="line">  [n; m] = [o; o] →</span><br><span class="line">  [n] = [m].</span><br><span class="line">Proof.</span><br><span class="line">  intros n m o H. inversion H. reflexivity. Qed.</span><br><span class="line"></span><br><span class="line">Theorem S_injective : ∀ (n m : nat),</span><br><span class="line">  S n = S m →</span><br><span class="line">  n = m.</span><br><span class="line">Proof.</span><br><span class="line">  intros n m H.</span><br><span class="line">  inversion H.</span><br><span class="line">  reflexivity.</span><br><span class="line">Qed.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros n eq H.</span><br><span class="line">  symmetry in H. apply eq in H. symmetry in H.</span><br><span class="line">  apply H. Qed.</span><br></pre></td></tr></table></figure>
+<p>有时候destruct和induction真的傻傻分不清楚<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros n m. induction n as [| n&apos;].</span><br><span class="line">  - (* n = O *) simpl. intros eq. destruct m as [| m&apos;].</span><br><span class="line">    + (* m = O *) reflexivity.</span><br><span class="line">    + (* m = S m&apos; *) inversion eq.</span><br><span class="line">  - (* n = S n&apos; *) intros eq. destruct m as [| m&apos;].</span><br><span class="line">    + (* m = O *) inversion eq.</span><br><span class="line">    + (* m = S m&apos; *) apply f_equal.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros n. unfold sillyfun.</span><br><span class="line">  destruct (beq_nat n 3).</span><br><span class="line">    - (* beq_nat n 3 = true *) reflexivity.</span><br><span class="line">    - (* beq_nat n 3 = false *) destruct (beq_nat n 5).</span><br><span class="line">      + (* beq_nat n 5 = true *) reflexivity.</span><br><span class="line">      + (* beq_nat n 5 = false *) reflexivity. Qed.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Proof.</span><br><span class="line">  intros n eq. unfold sillyfun1 in eq.</span><br><span class="line">  destruct (beq_nat n 3) eqn:Heqe3.</span><br><span class="line">  (* Now we have the same state as at the point where we got</span><br><span class="line">     stuck above, except that the context contains an extra</span><br><span class="line">     equality assumption, which is exactly what we need to</span><br><span class="line">     make progress. *)</span><br><span class="line">    - (* e3 = true *) apply beq_nat_true in Heqe3.</span><br><span class="line">      rewrite → Heqe3. reflexivity.</span><br><span class="line">    - (* e3 = false *)</span><br><span class="line">     (* When we come to the second equality test in the body</span><br><span class="line">        of the function we are reasoning about, we can use</span><br><span class="line">        eqn: again in the same way, allow us to finish the</span><br><span class="line">        proof. *)</span><br><span class="line">      destruct (beq_nat n 5) eqn:Heqe5.</span><br><span class="line">        + (* e5 = true *)</span><br><span class="line">          apply beq_nat_true in Heqe5.</span><br><span class="line">          rewrite → Heqe5. reflexivity.</span><br><span class="line">        + (* e5 = false *) inversion eq. Qed.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>小结<br>Tatics一章的最后已然给出：    <blockquote>
+</blockquote>
+intros: move hypotheses/variables from goal to context<br>reflexivity: finish the proof (when the goal looks like e = e)<br>apply: prove goal using a hypothesis, lemma, or constructor<br>apply… in H: apply a hypothesis, lemma, or constructor to a hypothesis in the context (forward reasoning)<br>apply… with…: explicitly specify values for variables that cannot be determined by pattern matching<br>simpl: simplify computations in the goal<br>simpl in H: … or a hypothesis<br>rewrite: use an equality hypothesis (or lemma) to rewrite the goal<br>rewrite … in H: … or a hypothesis<br>symmetry: changes a goal of the form t=u into u=t<br>symmetry in H: changes a hypothesis of the form t=u into u=t<br>unfold: replace a defined constant by its right-hand side in the goal<br>unfold… in H: … or a hypothesis<br>destruct… as…: case analysis on values of inductively defined types<br>destruct… eqn:…: specify the name of an equation to be added to the context, recording the result of the case analysis<br>induction… as…: induction on values of inductively defined types<br>inversion: reason by injectivity and distinctness of constructors<br>assert (H: e) (or assert (e) as H): introduce a “local lemma” e and call it H<br>generalize dependent x: move the variable x (and anything else that depends on it) from the context back to an explicit hypothesis in the goal formula    </li>
+</ul>
+<h1 id="例题总结"><a href="#例题总结" class="headerlink" title="例题总结"></a>例题总结</h1><h1 id="常用定理总结"><a href="#常用定理总结" class="headerlink" title="常用定理总结"></a>常用定理总结</h1><p>例题总结和常用定理总结将放在下一篇文章。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.kakuketsu.top/2018/11/30/数据库/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -933,7 +1143,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
